@@ -21,7 +21,7 @@
 #include <string>
 #include <vector>
 
-#include "base/strings/string_util.h"
+#include "base/strings/unicode.h"
 #include "build/build_config.h"
 
 //--------------------------------------------------------------------------------------------------
