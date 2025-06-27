@@ -32,7 +32,7 @@ int wmain(int argc, wchar_t* argv[])
     argv_utf8.reserve(argc);
     for (int i = 0; i < argc; ++i)
     {
-        argv_utf8.push_back(base::utf8FromUtf16(argv[i]));
+        argv_utf8.push_back(base::utf8FromUtf16(reinterpret_cast<const char16_t*>(argv[i])));
     }
 
     std::vector<char*> argv_c_str;
