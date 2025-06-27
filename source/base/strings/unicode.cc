@@ -229,8 +229,9 @@ OutputString asciiConverter(InputString in)
 //--------------------------------------------------------------------------------------------------
 bool utf16ToUtf8(std::u16string_view in, std::string* out)
 {
-#if defined(WCHAR_T_IS_UTF16)
-    return wideToUtf8Impl(in, out);
+#if defined(OS_WIN)
+    // On Windows, char16_t is the same as wchar_t, so we can directly cast.
+    return wideToUtf8Impl(std::wstring_view(reinterpret_cast<const wchar_t*>(in.data()), in.length()), out);
 #else
     return utf16ToUtf8Impl(in, out);
 #endif

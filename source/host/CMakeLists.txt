@@ -226,7 +226,7 @@ else()
 endif()
 
 if (WIN32)
-    set(HOST_PLATFORM_LIBS Qt5::WinMain)
+    list(APPEND HOST_PLATFORM_LIBS Qt5::WinMain)
 endif()
 
 if (LINUX)
