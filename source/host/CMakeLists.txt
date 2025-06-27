@@ -244,19 +244,12 @@ if (LINUX)
 endif()
 
 # Aspia Host (GUI)
-add_executable(aspia_host ui/host_entry_point.cc ui/host.rc)
+add_executable(aspia_host service_entry_point.cc ui/host.rc)
 if (WIN32)
     set_target_properties(aspia_host PROPERTIES WIN32_EXECUTABLE TRUE)
     set_target_properties(aspia_host PROPERTIES LINK_FLAGS "/MANIFEST:NO")
 endif()
 target_link_libraries(aspia_host aspia_host_core ${HOST_PLATFORM_LIBS})
-
-# Aspia Host Service
-add_executable(aspia_host_service service_entry_point.cc service.rc)
-if (WIN32)
-    set_target_properties(aspia_host_service PROPERTIES LINK_FLAGS "/MANIFEST:NO")
-endif()
-target_link_libraries(aspia_host_service aspia_host_core ${HOST_PLATFORM_LIBS})
 
 # Aspia Desktop Agent
 add_executable(aspia_desktop_agent WIN32 desktop_agent_entry_point.cc desktop_agent.rc)

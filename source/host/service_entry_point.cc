@@ -16,7 +16,7 @@
 // along with this program. If not, see <https://www.gnu.org/licenses/>.
 //
 
-#include "host/service_main.h"
+#include "host/ui/host_main.h"
 
 #include "build/build_config.h"
 
@@ -27,5 +27,5 @@ int wmain(int argc, wchar_t* argv[])
 int main(int argc, char* argv[])
 #endif
 {
-    return host::hostServiceMain(argc, argv);
+    return hostMain(argc, argv);
 }
