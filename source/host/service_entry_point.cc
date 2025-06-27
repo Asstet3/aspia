@@ -18,14 +18,35 @@
 
 #include "host/ui/host_main.h"
 
+#include <string>
+#include <vector>
+
+#include "base/string_util.h"
 #include "build/build_config.h"
 
 //--------------------------------------------------------------------------------------------------
 #if defined(OS_WIN)
 int wmain(int argc, wchar_t* argv[])
+{
+    std::vector<std::string> argv_utf8;
+    argv_utf8.reserve(argc);
+    for (int i = 0; i < argc; ++i)
+    {
+        argv_utf8.push_back(base::utf8FromUtf16(argv[i]));
+    }
+
+    std::vector<char*> argv_c_str;
+    argv_c_str.reserve(argc);
+    for (int i = 0; i < argc; ++i)
+    {
+        argv_c_str.push_back(argv_utf8[i].data());
+    }
+
+    return hostMain(argc, argv_c_str.data());
+}
 #else
 int main(int argc, char* argv[])
-#endif
 {
     return hostMain(argc, argv);
 }
+#endif
